@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">HybridMVP</string>
+    <string name="facebook_app_id">660803174100838</string>
+    <string name="enter_email">Enter Email</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="login">Login</string>
+    <string name="signup">Signup</string>
+    <string name="fb_login_protocol_scheme">fb660803174100838</string>
+</resources>

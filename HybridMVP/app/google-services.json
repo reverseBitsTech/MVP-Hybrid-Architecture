@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "456423302295",
+    "firebase_url": "https://hybrid-mvp.firebaseio.com",
+    "project_id": "hybrid-mvp",
+    "storage_bucket": "hybrid-mvp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:456423302295:android:2685b6e8bcc63c06",
+        "android_client_info": {
+          "package_name": "com.reversebits.projects.app.hybridmvp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "456423302295-vtfbmlri4j6boknlj0va0ass346mc640.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.reversebits.projects.app.hybridmvp",
+            "certificate_hash": "B02560BB1BB947F401023DE690D82D42E0C40962"
+          }
+        },
+        {
+          "client_id": "456423302295-rnvnvnar5a4cjkr2hkj0eg6oe2hhkeb0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCgg2_0UKUZ8uLkBYIUiWrYbqDfv1hLIZ8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "456423302295-rnvnvnar5a4cjkr2hkj0eg6oe2hhkeb0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
