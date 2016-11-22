@@ -34,32 +34,34 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-
         </activity>
 
         <activity android:name=".common.BaseActivity"/>
 
-        <activity android:name=".ui.activity.login.simplelogin.LoginActivity">
-
+        <activity android:name=".ui.activity.login.simplelogin.LoginActivity"
+            android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".ui.activity.login.gmail.Gmail_Login_Activity">
-
+        <activity android:name=".ui.activity.login.gmail.Gmail_Login_Activity"
+            android:screenOrientation="portrait">
         </activity>
 
-        <activity android:name=".ui.activity.login.facebook.FB_Login_Activity">
-
+        <activity android:name=".ui.activity.login.facebook.FB_Login_Activity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
-
         </activity>
 
-        <activity android:name=".ui.activity.login.twitter.Twitter_Login_Activity">
+        <activity android:name=".ui.activity.login.twitter.Twitter_Login_Activity"
+            android:screenOrientation="portrait">
+        </activity>
 
+        <activity android:name=".ui.activity.signup.SignupActivity"
+            android:screenOrientation="portrait">
         </activity>
 
     </application>

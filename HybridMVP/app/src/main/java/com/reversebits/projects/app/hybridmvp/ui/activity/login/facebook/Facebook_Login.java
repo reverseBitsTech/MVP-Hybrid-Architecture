@@ -12,17 +12,18 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.reversebits.projects.app.hybridmvp.common.FirebaseCommonClass;
 import com.reversebits.projects.app.hybridmvp.service.response.UserResponse;
 
 /**
  * Created by TapanHP on 11/14/2016.
  */
 
-class Facebook_Login {
+class Facebook_Login extends FirebaseCommonClass {
 
     Activity context;
 
-    UserResponse response;
+    private UserResponse response;
 
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
@@ -51,12 +52,12 @@ class Facebook_Login {
         };
     }
 
-
-    void addAuth() {
+    @Override
+    protected void addAuth() {
         mAuth.addAuthStateListener(mAuthListener);
     }
-
-    void removeAuth() {
+    @Override
+    protected void removeAuth() {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
@@ -72,7 +73,7 @@ class Facebook_Login {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         Log.e(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
 
-                        response= new UserResponse(task.getResult().getUser().getUid(),
+                        response = new UserResponse(task.getResult().getUser().getUid(),
                                 task.getResult().getUser().getDisplayName(), task.getResult().getUser().getEmail(), task.getResult().getUser().getPhotoUrl().toString());
 
                         if (!task.isSuccessful()) {

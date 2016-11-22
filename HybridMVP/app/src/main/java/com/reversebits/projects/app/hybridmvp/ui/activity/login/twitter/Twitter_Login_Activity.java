@@ -3,6 +3,8 @@ package com.reversebits.projects.app.hybridmvp.ui.activity.login.twitter;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
+import android.text.TextUtils;
 import android.util.Log;
 
 import com.reversebits.projects.app.hybridmvp.R;
@@ -93,10 +95,18 @@ public class Twitter_Login_Activity extends BaseActivity implements I_Twitter_Lo
                     }
                 });
 
-                UserResponse response = login.handleTwitterSession(result.data,email);
-                if(response != null)
-                    presenter.saveUserData(response);
+                if(!TextUtils.isEmpty(email)) {
+                    UserResponse response = login.handleTwitterSession(result.data, email);
+                    if (response != null)
+                        presenter.saveUserData(response);
 
+                    new AlertDialog.Builder(Twitter_Login_Activity.this).
+                            setNegativeButton("ok",null).create();
+                }
+                else {
+                    new AlertDialog.Builder(Twitter_Login_Activity.this).
+                    setNegativeButton("ok",null).create();
+                }
             }
 
             @Override

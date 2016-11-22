@@ -30,7 +30,10 @@ public class Gmail_Login_Presenter extends BasePresenter implements I_Gmail_Logi
 
     @Override
     protected void saveUserData(UserResponse response) {
-
+        view.savePref("USER_NAME", response.getName());
+        view.savePref("USER_ID", response.getUserID());
+        view.savePref("USER_EMAIL", response.getUserMail());
+        view.savePref("USER_PHOTO", response.getPhotoUri());
     }
 
     @Override

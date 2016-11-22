@@ -20,12 +20,14 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.reversebits.projects.app.hybridmvp.R;
+import com.reversebits.projects.app.hybridmvp.common.FirebaseCommonClass;
+import com.reversebits.projects.app.hybridmvp.service.response.UserResponse;
 
 /**
  * Created by TapanHP on 11/14/2016.
  */
 
-class Gmail_Login implements GoogleApiClient.OnConnectionFailedListener{
+class Gmail_Login extends FirebaseCommonClass implements GoogleApiClient.OnConnectionFailedListener {
 
     protected static final int RC_SIGN_IN = 9002;
     private static final String TAG = "Gmail_Login";
@@ -35,13 +37,14 @@ class Gmail_Login implements GoogleApiClient.OnConnectionFailedListener{
     private FirebaseAuth mAuth;
     private FirebaseAuth.AuthStateListener mAuthListener;
 
+    private UserResponse response;
+
     public Gmail_Login(AppCompatActivity context) {
         this.context = context;
     }
 
 
-    protected void initGoogle()
-    {
+    protected void initGoogle() {
         // Configure Google Sign In
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(context.getString(R.string.default_web_client_id))
@@ -72,34 +75,33 @@ class Gmail_Login implements GoogleApiClient.OnConnectionFailedListener{
         };
     }
 
-    protected void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
-        Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
+    protected UserResponse firebaseAuthWithGoogle(GoogleSignInAccount acct) {
 
         AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(context, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
-                        Log.e(TAG, "signInWithCredential:onComplete:" + task.isSuccessful());
-                        Log.e(TAG, "onComplete:" + task.getResult().getUser().getEmail() + " : "+ task.getResult().getUser().getUid() + " : "+
-                                task.getResult().getUser().getPhotoUrl() + " : "+ task.getResult().getUser().getDisplayName());
+                        Log.e(TAG, "onComplete:" + task.getResult().getUser().getEmail() + " : " + task.getResult().getUser().getUid() + " : " +
+                                task.getResult().getUser().getPhotoUrl() + " : " + task.getResult().getUser().getDisplayName());
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
+                        response = new UserResponse(task.getResult().getUser().getUid(), task.getResult().getUser().getEmail(),
+                                task.getResult().getUser().getEmail(), task.getResult().getUser().getPhotoUrl().toString());
+
                         if (!task.isSuccessful()) {
                             Log.e(TAG, "signInWithCredential", task.getException());
                         }
-                        // ...
                     }
                 });
+        return response;
     }
 
-    void addAuth() {
+    @Override
+    protected void addAuth() {
         mAuth.addAuthStateListener(mAuthListener);
     }
-
-    void removeAuth() {
+    @Override
+    protected void removeAuth() {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }

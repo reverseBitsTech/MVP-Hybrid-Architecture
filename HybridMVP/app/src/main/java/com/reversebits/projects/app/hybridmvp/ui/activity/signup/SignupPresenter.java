@@ -56,7 +56,6 @@ public class SignupPresenter extends BasePresenter implements ISignupInteractor 
                     view.doToast("Wrong email");
                     return false;
                 }
-
             }
         }
         view.doToast("Wrong name");

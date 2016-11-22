@@ -6,8 +6,8 @@ package com.reversebits.projects.app.hybridmvp.common;
 
 public abstract class FirebaseCommonClass {
 
-    public abstract void addAuth();
+     protected abstract void addAuth();
 
-    public abstract void removeAuth();
+     protected abstract void removeAuth();
 
 }

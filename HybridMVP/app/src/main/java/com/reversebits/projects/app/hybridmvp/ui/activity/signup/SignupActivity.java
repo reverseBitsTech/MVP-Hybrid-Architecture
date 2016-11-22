@@ -70,6 +70,7 @@ public class SignupActivity extends BaseActivity implements ISignupView {
         btActSignupReq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 if(presenter.userLoginAuth(etActSignupMail.getText().toString(),
                         etActSignupPass.getText().toString(),etActSignupName.getText().toString())) {
 

@@ -56,19 +56,18 @@ class Twitter_Login extends FirebaseCommonClass {
 
     }
 
-    private void signOut()
+    protected void signOut()
     {
         FirebaseAuth.getInstance().signOut();
     }
 
 
     @Override
-    public void addAuth() {
+    protected void addAuth() {
         mAuth.addAuthStateListener(mAuthListener);
     }
-
     @Override
-    public void removeAuth() {
+    protected void removeAuth() {
         if (mAuthListener != null) {
             mAuth.removeAuthStateListener(mAuthListener);
         }
@@ -101,14 +100,10 @@ class Twitter_Login extends FirebaseCommonClass {
                                                     authResultTask.getResult().getUser().getDisplayName(),
                                                     email,
                                                     authResultTask.getResult().getUser().getPhotoUrl().toString());
-
                                         }
                                     }
                                 });
 
-                        // If sign in fails, display a message to the user. If sign in succeeds
-                        // the auth state listener will be notified and logic to handle the
-                        // signed in user can be handled in the listener.
                         if (!authResultTask.isSuccessful()) {
                             Log.e(TAG, "signInWithCredential", authResultTask.getException());
                         }

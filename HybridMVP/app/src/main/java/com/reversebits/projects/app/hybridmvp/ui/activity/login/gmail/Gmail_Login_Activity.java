@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
@@ -11,6 +12,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInResult;
 import com.google.android.gms.common.SignInButton;
 import com.reversebits.projects.app.hybridmvp.R;
 import com.reversebits.projects.app.hybridmvp.common.BaseActivity;
+import com.reversebits.projects.app.hybridmvp.service.response.UserResponse;
 
 /**
  * Created by TapanHP on 11/14/2016.
@@ -21,6 +23,7 @@ public class Gmail_Login_Activity extends BaseActivity implements I_Gmail_Login_
     Gmail_Login_Presenter presenter;
     SignInButton loginButton;
     private Gmail_Login login;
+    private UserResponse response;
 
     public Gmail_Login_Activity() {
         presenter = new Gmail_Login_Presenter();
@@ -79,10 +82,13 @@ public class Gmail_Login_Activity extends BaseActivity implements I_Gmail_Login_
             if (result.isSuccess()) {
                 // Google Sign In was successful, authenticate with Firebase
                 GoogleSignInAccount account = result.getSignInAccount();
-                login.firebaseAuthWithGoogle(account);
+                response = login.firebaseAuthWithGoogle(account);
+
+                if (response != null)
+                    presenter.saveUserData(response);
             } else {
                 // Google Sign In failed, update UI appropriately
-                // ...
+                Toast.makeText(this,"Gmail login failed",Toast.LENGTH_SHORT).show();
             }
         }
     }
